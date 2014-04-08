@@ -1,0 +1,29 @@
+{% comment %}
+  Set the extension of your color files below. Use 'png', 'jpeg', 'jpg' or 'gif'.
+{% endcomment %}
+
+{% assign file_extension = 'png' %}
+
+{% if swatch-lip == blank %}
+<p class="swatch error">
+  You must include the snippet swatch-lip.liquid with a list of your colors. 
+  Use <tt>{% raw %}{% include 'swatch-lip' with 'comma-separated list of colors' %}{% endraw %}</tt> Example: <tt>{% raw %}{% include 'swatch-lip' with 'Ivory, Hot Pink, Navy Blue, Olive' %}{% endraw %}</tt>.
+</p>
+{% else %}
+
+{% assign all_colors = swatch-lip | split: ',' %}
+
+<div class="swatch clearfix">
+  <div class="header">Color</div>
+  {% assign values = '' %}
+  {% for c in all_colors %}
+    {% assign color = c | strip %}
+    <div data-value="{{ color | escape }}" class="swatch-element color {{ color | handle }}">
+      <div class="tooltip">{{ color }}</div>
+      <input id="{{ color | handle }}" type="radio" name="properties[Color]" value="{{ color | escape }}"{% if forloop.first %} checked{% endif %} />
+      <label for="{{ color | handle }}" style="background-color: {{ color | split: ' ' | last | handle }}; background-image: url({{ color | handle | append: '.' | append: file_extension | asset_url }})"></label>
+    </div>
+  {% endfor %}
+</div>
+
+{% endif %}
