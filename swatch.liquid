@@ -5,10 +5,11 @@
 {% assign file_extension = 'png' %}
 
 {% if swatch == blank %}
-<p class="swatch error">
-  You must include the snippet swatch.liquid with the name of your option. 
-  Use <tt>{% raw %}{% include 'swatch' with 'name of your product option here' %}{% endraw %}</tt> Example: <tt>{% raw %}{% include 'swatch' with 'Color' %}{% endraw %}</tt>.
-</p>
+<div class="swatch error">
+  <p>You must include the snippet swatch.liquid with the name of a product option.</p> 
+  <p>Use: <code>{% raw %}{% include 'swatch' with 'name of your product option here' %}{% endraw %}</code></p>
+  <p>Example: <code>{% raw %}{% include 'swatch' with 'Color' %}{% endraw %}</code></p>
+</div>
 {% else %}
 
 {% assign found_option = false %}
@@ -33,12 +34,12 @@
 {% endfor %}
 
 {% unless found_option %}
-<p class="swatch error">
-  You included the snippet swatch.liquid with the name of a product option that does not belong to your product.
-  Use <tt>{% raw %}{% include 'swatch' with 'name of your product option here' %}{% endraw %}</tt>.
-  Example: <tt>{% raw %}{% include 'swatch' with 'Color' %}{% endraw %}</tt>.
-  This is case-sensitive! Don't use <tt>'color'</tt> if your product uses a <tt>'Color'</tt> option.
-</p>
+<div class="swatch error">
+  <p>You included the snippet swatch.liquid with the name of a product option — <code>'{{ swatch }}'</code> — that does not belong to your product.</p>
+  <p>Use <code>{% raw %}{% include 'swatch' with 'name of your product option here' %}{% endraw %}</code></p>
+  <p>Example: <code>{% raw %}{% include 'swatch' with 'Color' %}{% endraw %}</code></p>
+  <p><strong>This is case-sensitive!</strong> Do not put in <code>'color'</code> if your product option name is <code>'Color'</code>.</p>
+</div>
 {% else %}
 <div class="swatch clearfix" data-option-index="{{ option_index }}">
   <div class="header">{{ swatch }}</div>

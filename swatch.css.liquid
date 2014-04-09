@@ -141,12 +141,20 @@
           transform:translateY(0px);
 }
 .swatch.error {
-  background-color: #D95C5C!important;
-  color: #FFF!important;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.3) 0,rgba(255, 255, 255, 0.3) 100%);
+  background-color:#E8D2D2!important;
+  color:#333!important;
   padding:1em;
   border-radius:5px;
 }
-.swatch.error tt {
-  font-family: Monaco, Consolas, "Lucida Console", monospace;
+.swatch.error p {
+  margin:0.7em 0;
+}
+.swatch.error p:first-child {
+  margin-top:0;
+}
+.swatch.error p:last-child {
+  margin-bottom:0;
+}
+.swatch.error code {
+  font-family:monospace;
 }
